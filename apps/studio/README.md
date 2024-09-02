@@ -1,1 +1,1 @@
-# Sanity Studio
+# Sanity Studio workspace
