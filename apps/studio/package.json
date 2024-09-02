@@ -5,10 +5,10 @@
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "sanity dev",
-    "start": "sanity start",
-    "build": "sanity build",
-    "deploy": "sanity deploy",
+    "dev": "dotenv -e ../../.env.local -- sanity dev",
+    "start": "dotenv -e ../../.env.local -- sanity start",
+    "build": "dotenv -e ../../.env.local -- sanity build",
+    "deploy": "dotenv -e ../../.env.local -- sanity deploy",
     "lint": "eslint --ext .js,.ts,.tsx",
     "lint:fix": "eslint --fix --ext .js,.ts,.tsx ./src"
   },
@@ -16,7 +16,11 @@
     "sanity"
   ],
   "dependencies": {
+    "@sanity/presentation": "^1.16.4",
     "@sanity/vision": "^3.54.0",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
+    "groqd-playground": "^0.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanity": "^3.54.0",

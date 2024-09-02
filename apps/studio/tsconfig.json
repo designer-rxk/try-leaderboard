@@ -19,7 +19,9 @@
       "@documents": ["src/schemas/documents/index.ts"],
       "@actions": ["src/schemas/actions/index.ts"],
       "@objects": ["src/schemas/objects/index.ts"],
-      "@fields": ["src/schemas/fields/index.ts"]
+      "@fields": ["src/schemas/fields/index.ts"],
+      "@utils": ["src/utils/index.ts"],
+      "@lib": ["src/lib/index.ts"],
     },
   },
   "include": ["**/*.ts", "**/*.tsx"],

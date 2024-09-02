@@ -1,4 +1,4 @@
-import { meta } from "@fields";
+import { meta, title } from "@fields";
 import { defineType } from "sanity";
 
 export const page = defineType({
@@ -11,5 +11,5 @@ export const page = defineType({
       title: "Meta",
     },
   ],
-  fields: [meta],
+  fields: [meta, title],
 });

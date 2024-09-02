@@ -1,6 +1,15 @@
 {
   "extends": "@mono/typescript-config/nextjs.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "declarationMap": false,
+    "strict": true,
+    "paths": {
+      "@components": ["./src/components/index.ts"],
+      "@utils": ["src/utils/index.ts"],
+      "@lib/*": ["src/lib/*"],
+    },
     "plugins": [
       {
         "name": "next",
