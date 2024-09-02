@@ -1,7 +1,9 @@
 {
-  "name": "mono",
+  "name": "mono-v3",
   "version": "0.0.1",
-  "private": true,
+  "bin": {
+    "mono": "bin/cli.js"
+  },
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
