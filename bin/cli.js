@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
@@ -10,7 +12,7 @@ const rl = readline.createInterface({
 
 const githubRepoUrl = "https://github.com/designer-rxk/project-mono-v3.git";
 
-function createProject(projectName, projectPath) {
+function createProject(projectPath) {
   try {
     execSync(`git clone ${githubRepoUrl} ${projectPath}`, { stdio: "inherit" });
 
@@ -20,45 +22,66 @@ function createProject(projectName, projectPath) {
     execSync("git init", { stdio: "inherit" });
     execSync("pnpm install", { stdio: "inherit" });
 
-    console.log(
-      `Your project ${projectName} has been created in ${projectPath}!`,
-    );
+    console.log(`Your project has been created in ${projectPath}!`);
   } catch (error) {
     console.error("Error creating project:", error);
-    process.exit(1);
+    rl.close();
+    process.exit(1); // Exiting on error
   } finally {
     rl.close();
+    deleteBinFolders(projectPath);
   }
 }
 
-function askForProjectName() {
-  rl.question("Please provide a project name: ", (projectName) => {
-    if (!projectName) {
-      console.error("Project name is required.");
-      process.exit(1);
+function deleteBinFolders(projectPath) {
+  const scriptPath = process.argv[1];
+  const npxBinFolderPath = path.dirname(scriptPath);
+  const projectBinFolderPath = path.join(projectPath, "bin");
+
+  console.log("Script path:", scriptPath);
+  console.log("npx bin folder path:", npxBinFolderPath);
+  console.log("Project bin folder path:", projectBinFolderPath);
+  console.log("Current working directory:", process.cwd());
+
+  try {
+    // Delete the script and npx bin folder
+    if (fs.existsSync(scriptPath)) {
+      fs.unlinkSync(scriptPath);
+      console.log(`Deleted script at ${scriptPath}`);
     } else {
-      askForProjectPath(projectName);
+      console.error(`Script path ${scriptPath} does not exist.`);
     }
-  });
+
+    if (fs.existsSync(npxBinFolderPath)) {
+      fs.rmSync(npxBinFolderPath, { recursive: true, force: true });
+      console.log(`Deleted npx bin folder at ${npxBinFolderPath}`);
+    } else {
+      console.error(`npx bin folder path ${npxBinFolderPath} does not exist.`);
+    }
+
+    // Delete the project bin folder
+    if (fs.existsSync(projectBinFolderPath)) {
+      fs.rmSync(projectBinFolderPath, { recursive: true, force: true });
+      console.log(`Deleted project bin folder at ${projectBinFolderPath}`);
+    } else {
+      console.error(
+        `Project bin folder path ${projectBinFolderPath} does not exist.`,
+      );
+    }
+  } catch (err) {
+    console.error("Error deleting folders:", err);
+  }
 }
 
-function askForProjectPath(projectName) {
+function askForProjectPath() {
   rl.question(
     "Please provide a folder to place the project (enter '.' for current directory): ",
     (folder) => {
       const projectPath =
-        folder === "."
-          ? process.cwd()
-          : path.join(process.cwd(), folder, projectName);
-      createProject(projectName, projectPath);
+        folder === "." ? process.cwd() : path.join(process.cwd(), folder);
+      createProject(projectPath);
     },
   );
 }
 
-const projectName = process.argv[2];
-
-if (!projectName) {
-  askForProjectName();
-} else {
-  askForProjectPath(projectName);
-}
+askForProjectPath();
