@@ -1,5 +1,5 @@
 import { runQuery } from "@lib/sanity";
-import { Typography } from "@mono/ui";
+import { Container, Typography } from "@mono/ui";
 import { type Homepage, homePageQuery } from "@utils";
 import { notFound } from "next/navigation";
 
@@ -17,8 +17,10 @@ export default async function HomePage() {
   }
 
   return (
-    <Typography as="h1" className="w-full justify-center flex items-center">
-      Sanity Text: {page.title}
-    </Typography>
+    <Container>
+      <Typography as="h1" className="w-full justify-center flex items-center">
+        Sanity Text: {page.title}
+      </Typography>
+    </Container>
   );
 }
