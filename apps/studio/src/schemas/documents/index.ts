@@ -1,2 +1,3 @@
-export * from "./homepage";
-export * from "./page";
+export * from "./game";
+export * from "./match";
+export * from "./player";
