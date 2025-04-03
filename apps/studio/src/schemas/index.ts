@@ -1,10 +1,3 @@
-import { homepage, page } from "@documents";
-import { meta } from "@objects";
+import { game, match, player } from "@documents";
 
-export const schemas = [
-  // Documents
-  page,
-  homepage,
-  // Objects
-  meta,
-];
+export const schemas = [match, player, game];
