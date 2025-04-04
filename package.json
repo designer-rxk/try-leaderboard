@@ -21,6 +21,6 @@
   "engines": {
     "node": ">=20",
     "yarn": "please-use-pnpm",
-    "pnpm": ">=9"
+    "pnpm": ">=8"
   }
 }
