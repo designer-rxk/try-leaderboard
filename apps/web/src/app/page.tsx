@@ -23,8 +23,8 @@ export default async function HomePage() {
         <div className="py-12">
           <h2 className="text-3xl font-bold tracking-tight mb-8">Games</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {games.map((game) => (
-              <GameCard key={game._id} game={game} />
+            {games.map((game, index) => (
+              <GameCard key={index} game={game} />
             ))}
           </div>
         </div>

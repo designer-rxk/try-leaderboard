@@ -28,15 +28,19 @@ export default async function Page({ params }: { params: { gameId: string } }) {
       <Container>
         <div className="py-12">
           <div className="flex items-center gap-4 mb-8">
-            <Button variant="outline" size="sm" asChild className="rounded-lg">
+            <Button
+              className="rounded-lg p-2 group"
+              variant="outline"
+              size="sm"
+              asChild
+            >
               <Link href="/">
-                <ArrowLeft className="h-4 w-4 mr-2" />
+                <ArrowLeft className="h-4 w-4 transition-all duration-300 transform group-hover:translate-x-1" />
                 Back
               </Link>
             </Button>
             <h1 className="text-3xl font-bold tracking-tight">{gameTitle}</h1>
           </div>
-
           <MatrixLeaderboard matches={matches} />
         </div>
       </Container>

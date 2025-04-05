@@ -2,8 +2,9 @@ import { Button } from "@components/components/ui/button";
 import { Card, CardContent, CardFooter } from "@components/components/ui/card";
 import type { Homepage } from "@utils";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+
+import { SanityImage } from "../sanity-image";
 
 interface GameCardProps {
   game: Homepage;
@@ -12,17 +13,19 @@ interface GameCardProps {
 export function GameCard({ game }: GameCardProps) {
   return (
     <Link href={`/${game._id}`}>
-      <Card className="overflow-hidden transition-all hover:shadow-md rounded-2xl">
-        <div className="aspect-[16/9] relative bg-muted">
-          <Image
-            src="/placeholder.svg"
-            alt={game.title || "Game"}
+      <Card className="group overflow-hidden transition-all duration-300 shadow-sm hover:shadow-lg border border-border/40 rounded-2xl bg-card hover:translate-y-[-4px]">
+        <div className="aspect-[16/9] relative bg-muted overflow-hidden">
+          <SanityImage
             fill
-            className="object-cover"
+            sizes="(100vw - 128px)"
+            imageField={game.image}
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
         <CardContent className="p-6">
-          <h3 className="text-xl font-bold mb-2">{game.title}</h3>
+          <h3 className="text-xl font-bold mb-2 transition-colors group-hover:text-primary">
+            {game.title}
+          </h3>
           <p className="text-muted-foreground line-clamp-2">
             {game.description}
           </p>
@@ -35,8 +38,13 @@ export function GameCard({ game }: GameCardProps) {
               </time>
             ) : null}
           </div>
-          <Button variant="ghost" size="sm">
-            View <ArrowRight className="ml-2 h-4 w-4" />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex gap-1 relative overflow-hidden"
+          >
+            <span>View</span>
+            <ArrowRight className="h-4 w-4 transition-all duration-300 transform group-hover:translate-x-1" />
           </Button>
         </CardFooter>
       </Card>

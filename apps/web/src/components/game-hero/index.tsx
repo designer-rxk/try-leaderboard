@@ -10,7 +10,7 @@ interface GameHeroProps {
 
 export function GameHero({ game }: GameHeroProps) {
   return (
-    <div className="relative bg-muted">
+    <div className="relative bg-muted group">
       <div
         className="absolute inset-0 bg-gradient-to-r from-background to-background/20"
         aria-hidden="true"
@@ -26,9 +26,10 @@ export function GameHero({ game }: GameHeroProps) {
                 "Explore our collection of interactive games and challenges."}
             </p>
             <div className="flex gap-4">
-              <Button asChild>
+              <Button asChild className="rounded-lg py-2 px-4 group">
                 <Link href={`/games/${game._id}`}>
-                  Play Now <ArrowRight className="ml-2 h-4 w-4" />
+                  Play Now{" "}
+                  <ArrowRight className="h-4 w-4 transition-all duration-300 transform group-hover:translate-x-1" />
                 </Link>
               </Button>
               <Button variant="outline">Learn More</Button>

@@ -1,3 +1,4 @@
+import { image } from "@fields";
 import { defineField, defineType } from "sanity";
 
 export const game = defineType({
@@ -16,5 +17,6 @@ export const game = defineType({
       title: "Description",
       type: "text",
     }),
+    image(),
   ],
 });
