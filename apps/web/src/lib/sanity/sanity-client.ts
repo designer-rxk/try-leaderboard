@@ -5,9 +5,9 @@ import {
   SANITY_STUDIO_DATASET,
   SANITY_STUDIO_PROJECT_ID,
 } from "@utils";
-import { createClient } from "next-sanity";
+import { ClientConfig, createClient } from "next-sanity";
 
-export const client = createClient({
+export const sanityClientConfig: ClientConfig = {
   apiVersion: SANITY_STUDIO_API_VERSION,
   projectId: SANITY_STUDIO_PROJECT_ID,
   dataset: SANITY_STUDIO_DATASET,
@@ -17,4 +17,6 @@ export const client = createClient({
     enabled: false,
     studioUrl: "http://localhost:3333/",
   },
-});
+};
+
+export const client = createClient(sanityClientConfig);
