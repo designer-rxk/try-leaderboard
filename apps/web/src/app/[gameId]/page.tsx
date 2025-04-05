@@ -34,8 +34,8 @@ export default async function Page({ params }: { params: { gameId: string } }) {
               size="sm"
               asChild
             >
-              <Link href="/">
-                <ArrowLeft className="h-4 w-4 transition-all duration-300 transform group-hover:translate-x-1" />
+              <Link href="/" className="flex items-center gap-2">
+                <ArrowLeft className="h-4 w-4 transition-all duration-300 transform group-hover:-translate-x-1" />
                 Back
               </Link>
             </Button>
