@@ -7,7 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MatrixLeaderboard } from "src/components/matrix-leaderboard";
 
-export const revalidate = 60;
+export const revalidate = 1;
 
 async function getData() {
   return (await runQuery(matchPageQuery)) as MatchPage[];

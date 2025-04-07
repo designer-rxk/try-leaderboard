@@ -4,7 +4,7 @@ import { type Homepage, homePageQuery } from "@utils";
 import { notFound } from "next/navigation";
 import { GameCard } from "src/components/game-card";
 
-export const revalidate = 60;
+export const revalidate = 1;
 
 async function getData() {
   return (await runQuery(homePageQuery)) as Homepage[];
